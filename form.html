@@ -12,40 +12,45 @@
 </head>
 
 <body class="page">
-  <section class="main">
-    <div class="main__inner container">
-      <h2 class="main__title">Привязка банковской карты</h2>  
-          <form class="main__addition" action="https://echo.htmlacademy.ru/" method="post">
-            <div class="main__data">
-              <div class="main__images">
-                <img class="main__image" src="img/mastercard.jpg" alt="мастеркард" width="30" height="20">
-                <img class="main__image" src="img/visa.jpg" alt="виза" width="30" height="20">
-                <img class="main__image" src="img/mir.jpeg" alt="мир" width="30" height="20">
+  <section class="form">
+    <div class="form__inner container">
+      <h2 class="form__title">Привязка банковской карты</h2>  
+          <form class="form__addition" action="https://echo.htmlacademy.ru/" method="post">
+            <div class="form__wrapper">
+              <div class="form__images">
+                <img class="form__image" src="img/mastercard.jpg" alt="мастеркард" width="30" height="20">
+                <img class="form__image" src="img/visa.jpg" alt="виза" width="30" height="20">
+                <img class="form__image" src="img/mir.jpeg" alt="мир" width="30" height="20">
               </div>
-              <label class="main__label"> <span class="visually-hidden">Номер карты</span>
-                <input class="main__card-number" type="number" name="number" placeholder="Номер карты">
+              <label class="form__label"> <span class="visually-hidden">Номер карты</span>
+                <input class="form__number" type="text" name="number" id="number" placeholder="Номер карты">
               </label>
-              <div class="main__inputs">
-              <label class="main__label"> <span class="visually-hidden">Дата</span>
-                <input class="main__data" type="number" name="date"placeholder="ММ/ГГ"/>
+              <div class="form__inputs">
+              <label class="form__label"> <span class="visually-hidden">Дата</span>
+                <input class="form__data" type="text" name="date" id="name" placeholder="ММ/ГГ"/>
               </label>
-              <label class="main__label"> <span>Три цифры на обороте</span>
-                <input class="main__cvc" type="mail" name="email" id="email" placeholder="CVC" />
+              <label class="form__label"> <span class="visually-hidden">CVC</span>
+                <div class="form__texts">
+                <p class="form__text">Три цифры</p>
+                <p class="form__text">на обороте</p>
+                </div>
+                <input class="form__cvc" type="mail" name="email" id="email" placeholder="CVC" />
               </label>
               </div>
-              <div class="main__buttons">
-                <a class="main__link" href="index.html">Отменить</a>
-                <button class="main__button" type="submit">Продолжить</button>
+              </div>
+              <div class="form__buttons">
+                <a class="form__link" href="index.html">Отменить</a>
+                <button class="form__button" type="submit">Продолжить</button>
               </div>
             </div>
-        </div>
+
         </form>
      </div>
   </section>
   
   <section class="modal">
     <div class="modal__inner">
-      <div class="modal__header">
+      <div class="modal__data">
         <img class="modal__image" src="img/ok.png">
         <p class="modal__title">Всё получилось</p>
         <p class="modal__text">Через минуту ваша карта появится в кошельке - </p>
