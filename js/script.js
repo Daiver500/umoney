@@ -50,16 +50,20 @@ const closeFormWindow = () => {
   // cardNumberInput.removeEventListener("input", validateCardNumber)
   // cardNumberInput.addEventListener("keyup", mask);
   form.removeEventListener("submit", submitForm);
- 
 }
 
 const submitForm = (evt) => {
   evt.preventDefault();
-  openModalSuccess();
-  newCard.renderCard();
-  cardNumberInput.value = ``;
-}
-
+  if (cardNumberInput.value === ``) {
+    cardNumberInput.setCustomValidity(`Заполните, пожалуйста, номер`);
+  } else {
+    cardNumberInput.setCustomValidity(``);
+    openModalSuccess();
+    newCard.renderCard();
+    //cardNumberInput.value = ``;
+  }
+  cardNumberInput.reportValidity();
+};
 
 const openModalSuccess = () => {
   closeFormWindow();
@@ -148,12 +152,4 @@ const validateCardNumber = () => {
   
 }*/
 
-const test = () => {
-  
-  if (cardNumberInput.value.length === 0) {
-    cardNumberInput.setCustomValidity(`Заполните, пожалуйста, номер`);
-  } else {
-    cardNumberInput.setCustomValidity(``);
-  }
-}
 
