@@ -56,7 +56,8 @@ const closeFormWindow = () => {
   cardNumberInput.removeEventListener("keyup", validateCardNumber)
   cardNumberInput.removeEventListener("keydown", validateCardNumber)
   cardNumberInput.removeEventListener("keyup", mask);
-  //cardNumberInput.removeEventListener("keydown", validateCardNumber)
+  cardCvcInput.removeEventListener("keyup", validateCvcCardNumber)
+  cardCvcInput.removeEventListener("keydown", validateCvcCardNumber)
   form.removeEventListener("submit", submitForm);
 }
 
@@ -129,21 +130,21 @@ const newCard = new BankCard(
 // Валидация
 
 const REG_EXP = /^([0-9])$/;
-const maxChars = 19;
+const MAX_CHARS = 19;
 let isValid = false;
-const maxCharsCvc = 3;
+const MAX_CVC_CHARS = 3;
 
 const validateCardNumber = () => {
 
-  if (cardNumberInput.value.length > maxChars) {
-    cardNumberInput.value = cardNumberInput.value.substr(0, maxChars);
+  if (cardNumberInput.value.length > MAX_CHARS) {
+    cardNumberInput.value = cardNumberInput.value.substr(0, MAX_CHARS);
   }
 
-  if (cardNumberInput.value.length > maxChars) {
-    cardNumberInput.value = cardNumberInput.value.substr(0, maxChars);
+  if (cardNumberInput.value.length > MAX_CHARS) {
+    cardNumberInput.value = cardNumberInput.value.substr(0, MAX_CHARS);
   }
 
-  if (cardNumberInput.value.length === 19) {
+  if (cardNumberInput.value.length === MAX_CHARS && cardCvcInput.value.length === MAX_CVC_CHARS) {
     submitButton.disabled = false;
   } else {
     submitButton.disabled = true;
@@ -165,12 +166,18 @@ const validateCardNumber = () => {
 
 const validateCvcCardNumber = () => {
   
-  if (cardCvcInput.value.length > maxCharsCvc) {
-    cardCvcInput.value = cardCvcInput.value.substr(0, maxCharsCvc);
+  if (cardCvcInput.value.length > MAX_CVC_CHARS) {
+    cardCvcInput.value = cardCvcInput.value.substr(0, MAX_CVC_CHARS);
   }
 
-  if (cardCvcInput.value.length > maxCharsCvc) {
-    cardCvcInput.value = cardCvcInput.value.substr(0, maxCharsCvc);
+  if (cardCvcInput.value.length > MAX_CVC_CHARS) {
+    cardCvcInput.value = cardCvcInput.value.substr(0, MAX_CVC_CHARS);
+  }
+
+  if (cardCvcInput.value.length === MAX_CVC_CHARS && cardNumberInput.value.length === MAX_CHARS) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
   }
 }
 
