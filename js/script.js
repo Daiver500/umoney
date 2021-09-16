@@ -43,8 +43,8 @@ const openFormWindow = () => {
   cardNumberInput.addEventListener("keyup", validateCardNumber)
   cardNumberInput.addEventListener("keydown", validateCardNumber)
   cardNumberInput.addEventListener("keyup", mask);
-  //cardCvcInput.addEventListener("keyup", validateCvcCardNumber)
-  //cardCvcInput.addEventListener("keydown", validateCvcCardNumber)
+  cardCvcInput.addEventListener("keyup", validateCvcCardNumber)
+  cardCvcInput.addEventListener("keydown", validateCvcCardNumber)
   form.addEventListener("submit", submitForm);
 }
 
@@ -57,7 +57,6 @@ const closeFormWindow = () => {
   cardNumberInput.removeEventListener("keydown", validateCardNumber)
   cardNumberInput.removeEventListener("keyup", mask);
   //cardNumberInput.removeEventListener("keydown", validateCardNumber)
-  //cardNumberInput.removedEventListener("keyup", mask);
   form.removeEventListener("submit", submitForm);
 }
 
@@ -127,36 +126,12 @@ const newCard = new BankCard(
     ".main__cards",
   );
 
-// Test
-
-/*const Test = () => {
-  const mastercardRegEx = /^([0-9])$/;
-  const maxChars = 16;
-  let isValid = false;
-
-  if (mastercardRegEx.test(cardNumberInput.value)) {
-    isValid = true;
-  } 
-
-  if(isValid) {
-    cardNumberInput.setCustomValidity(``);
-  } else {
-    cardNumberInput
-    cardNumberInput.setCustomValidity(`пожалуйста, введите 16 цифр карты`);
-  }
-
-  cardNumberInput.reportValidity();
-
-  if (cardNumberInput.value.length > maxChars) {
-    cardNumberInput.value.substr(0, maxChars)
-  }
-}*/
-
-
 // Валидация
-const REG_EXP = /^([0-9]){1,4}$/;
+
+const REG_EXP = /^([0-9])$/;
 const maxChars = 19;
-//const maxCharsCvc = 3;
+let isValid = false;
+const maxCharsCvc = 3;
 
 const validateCardNumber = () => {
 
@@ -170,19 +145,34 @@ const validateCardNumber = () => {
 
   if (cardNumberInput.value.length === 19) {
     submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
   }
+
+  if (REG_EXP.test(cardNumberInput.value)) {
+    isValid = true;
+  } 
+
+  if(isValid) {
+    cardNumberInput.setCustomValidity(``);
+  } else {
+    cardNumberInput.value = ``;
+    cardNumberInput.setCustomValidity(`пожалуйста, введите 16 цифр карты`);
+  }
+
+  cardNumberInput.reportValidity();
 }
 
-/*const validateCvcCardNumber = () => {
+const validateCvcCardNumber = () => {
   
-  if (cvcInput.value.length > maxCharsCvc) {
-    cvcInput.value = cardNumberInput.value.substr(3, maxCharsCvc);
+  if (cardCvcInput.value.length > maxCharsCvc) {
+    cardCvcInput.value = cardCvcInput.value.substr(0, maxCharsCvc);
   }
 
-  if (cvcInput.value.length > maxCharsCvc) {
-    cvcInput.value = cardNumberInput.value.substr(3, maxCharsCvc);
+  if (cardCvcInput.value.length > maxCharsCvc) {
+    cardCvcInput.value = cardCvcInput.value.substr(0, maxCharsCvc);
   }
-}*/
+}
 
 // Ввод инпута через пробел
 
