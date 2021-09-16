@@ -52,10 +52,6 @@ body {
   min-height: 100vh;
 }
 
-.hidden {
-  display: none;
-}
-
 /* Main */
 
 .main {
@@ -76,11 +72,14 @@ body {
 }
 
 .main__cards {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1260px;
+  /*display: flex;
+  /justify-content: space-between;
+  max-width: 1260px;*/
   flex-wrap: wrap;
   margin-bottom: 57px;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(448px, 1fr));
 }
 
 .main__card {
@@ -142,6 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 .form__wrapper {
@@ -209,6 +209,12 @@ body {
 .form__data,
 .form__cvc {
   max-width: 100px;
+}
+
+.form__number::-webkit-inner-spin-button,
+.form__data::-webkit-inner-spin-button,
+.form__cvc::-webkit-inner-spin-button {
+  display: none;
 }
 
 .form__texts {
@@ -337,7 +343,6 @@ body {
   margin-top: 40px;
 }
 
-
 /* Container */
 
 .container {
@@ -360,7 +365,8 @@ body {
 
 /* Modal */
 
-.modal {
+.modal,
+.form {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -374,8 +380,8 @@ body {
   min-height: 100vh;
 }
 
-.modal__inner {
-  display: flex;
+.modal__inner,
+.form__inner {
   position: fixed;
   top: calc(50% - 295px);
   right: 0;
@@ -383,11 +389,15 @@ body {
   bottom: auto;
   margin: auto;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   z-index: 2;
   background-color: white;
-  max-width: 508px;
+  max-width: 510px;
   border-radius: 2%;
+}
+
+.modal__inner {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
 }
 
 .modal__data {
@@ -430,7 +440,7 @@ body {
   line-height: 15px;
 }
 
-.modal__link,
+.modal__button,
 .main__link {
   font-family: "PTMono", "Arial", sans-serif;
   font-weight: 400;
@@ -443,12 +453,13 @@ body {
   cursor: pointer;
   margin-top: 30px;
   height: 45px;
+  border: none;
 }
 
-.modal__link:hover,
-.modal__link:focus,
-.main__link:hover,
-.main__link:focus {
+.modal__button:hover,
+.modal__button:focus,
+.main__button:hover,
+.main__button:focus {
   background-color: white;
   color: black;
   border: 1px solid black;
@@ -456,10 +467,6 @@ body {
 
 .modal__button:disabled {
   opacity: 0.5;
-}
-
-.hidden {
-  display: none;
 }
 
 .modal__animation {
@@ -487,3 +494,6 @@ body {
   }
 }
 
+.hidden {
+  display: none;
+}

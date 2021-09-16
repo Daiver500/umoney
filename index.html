@@ -25,7 +25,7 @@
         </div>
       </div>
       <div>
-        <a class="main__button button" href="form.html">Привязать еще одну</a>
+        <button type="button" class="main__button button">Привязать еще одну</button>
       </div>
     </div>
   </section>
@@ -58,6 +58,53 @@
 
     </form>
 
+    </div>
+  </section>
+  <section class="form hidden">
+    <div class="form__inner container">
+      <h2 class="form__title">Привязка банковской карты</h2>  
+          <form class="form__addition" action="https://echo.htmlacademy.ru/" method="post">
+            <div class="form__wrapper">
+              <div class="form__images">
+                <img class="form__image" src="img/mastercard.jpg" alt="мастеркард" width="30" height="20">
+                <img class="form__image" src="img/visa.jpg" alt="виза" width="30" height="20">
+                <img class="form__image" src="img/mir.jpeg" alt="мир" width="30" height="20">
+              </div>
+              <label class="form__label"> <span class="visually-hidden">Номер карты</span>
+                <input class="form__number" type="text" name="number" id="number" placeholder="Номер карты">
+              </label>
+              <div class="form__inputs">
+              <label class="form__label"> <span class="visually-hidden">Дата</span>
+                <input class="form__data" type="number" name="date" id="date" placeholder="ММ/ГГ"/>
+              </label>
+              <label class="form__label"> <span class="visually-hidden">CVC</span>
+                <div class="form__texts">
+                <p class="form__text">Три цифры</p>
+                <p class="form__text">на обороте</p>
+                </div>
+                <input class="form__cvc" type="number" name="cvc" id="cvc" placeholder="CVC" />
+              </label>
+              </div>
+              </div>
+              <div class="form__buttons">
+                <button class="form__button form__button-cancel" type="button">Отменить</button>
+                <button class="form__button form__button-submit" type="submit">Продолжить</button>
+              </div>
+            </div>
+
+        </form>
+     </div>
+  </section>
+  
+  <section class="modal hidden">
+    <div class="modal__inner">
+      <div class="modal__data">
+        <img class="modal__image" src="img/ok.png">
+        <p class="modal__title">Всё получилось</p>
+        <p class="modal__text">Через минуту ваша карта появится в кошельке - </p>
+        <p class="modal__text">вы увидите ее в разделе "Банковские карты"</p>
+        <button type="button" class="modal__button">Обратно к картам</button>
+      </div>
     </div>
   </section>
   <script src="js/script.js"></script>
