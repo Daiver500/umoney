@@ -38,7 +38,7 @@ const openFormWindow = () => {
   document.addEventListener("keydown", escPressHandler);
   document.addEventListener("click", windowPressHandler);
   // cardNumberInput.addEventListener("input", validateCardNumber)
-  cardNumberInput.addEventListener("keyup", mask);
+  // cardNumberInput.addEventListener("keyup", mask);
   form.addEventListener("submit", submitForm);
 }
 
@@ -48,7 +48,7 @@ const closeFormWindow = () => {
   document.removeEventListener("keydown", escPressHandler);
   document.removeEventListener("click", windowPressHandler);
   // cardNumberInput.removeEventListener("input", validateCardNumber)
-  cardNumberInput.addEventListener("keyup", mask);
+  // cardNumberInput.addEventListener("keyup", mask);
   form.removeEventListener("submit", submitForm);
  
 }
@@ -141,11 +141,19 @@ const validateCardNumber = () => {
 
 // Ввод инпута
 
-const mask = () => {
-  let val = cardNumberInput.value.replace(/([^0-9])/g, '');
+/*const mask = () => {
+  let val = cardNumberInput.value.replace(/[^0-9]/g, '');
   val = val !== '' ? val.match(/.{1,4}/g).join` ` : ` `;
   cardNumberInput.value = val;
+  
+}*/
+
+const test = () => {
+  
+  if (cardNumberInput.value.length === 0) {
+    cardNumberInput.setCustomValidity(`Заполните, пожалуйста, номер`);
+  } else {
+    cardNumberInput.setCustomValidity(``);
+  }
 }
-
-
 
