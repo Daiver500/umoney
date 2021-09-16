@@ -52,6 +52,10 @@ body {
   min-height: 100vh;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Main */
 
 .main {
@@ -357,7 +361,7 @@ body {
 /* Modal */
 
 .modal {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -366,13 +370,13 @@ body {
   right: 0;
   bottom: 0;
   z-index: 2;
-  /* background-color: rgba(0, 0, 0, 0.8);*/
+  background-color: white;
   min-height: 100vh;
 }
 
 .modal__inner {
   display: flex;
-  position: relative;
+  position: fixed;
   top: calc(50% - 295px);
   right: 0;
   left: 0;
@@ -382,7 +386,7 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   z-index: 2;
   background-color: white;
-  max-width: 550px;
+  max-width: 508px;
   border-radius: 2%;
 }
 

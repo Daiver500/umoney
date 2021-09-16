@@ -1,28 +1,39 @@
+// Модальное окно
 
+const form = document.querySelector(".form__addition");
+const modal = document.querySelector(".modal");
+
+if (modal) {
+const openModalSuccess = () => {
+  modal.classList.remove("hidden");
+}
+
+const formSubmit = (evt) => {
+  evt.preventDefault();
+  openModalSuccess();
+  newCard.renderCard();
+}
+
+form.addEventListener("submit", formSubmit)
+}
 
 // Классы для карточек 
 
-class MenuCard {
-  constructor (img, alt, title, text, price, parentSelector, ...classes) {
+class BankCard {
+  constructor (img, alt, logo, logoAlt, number, parentSelector, ...classes) {
     this.img = img;
     this.alt = alt;
-    this.title = title;
-    this.text = text;
-    this.price = price;
+    this.logo = logo;
+    this.logoAlt = logoAlt;
+    this.number = number;
     this.classes = classes;
     this.parent = document.querySelector(parentSelector);
-    this.currency = 75;
-    this.changeToRub();
   }
 
-  changeToRub() {
-    this.price = this.price * this.currency;
-  }
-
-  render() {
+  renderCard() {
     const newElement = document.createElement("div");
-    if(this.classes.length === 0) {
-      this.newElement = "menu__item";  // задаем дефолтный класс, если никаких классов в rest операторе нет
+     if(this.classes.length === 0) {
+      this.newElement = "main__card";  // задаем дефолтный класс, если никаких классов в rest операторе нет
       newElement.classList.add(this.newElement);
     } else {
       this.classes.forEach((item) => {
@@ -30,62 +41,26 @@ class MenuCard {
       });
     }
      newElement.innerHTML = 
-    `<img src=${this.img} alt=${this.alt}>
-    <h3 class="menu__item-subtitle">${this.title}</h3>
-    <div class="menu__item-descr">${this.text}</div>
-    <div class="menu__item-divider"></div>
-    <div class="menu__item-price">
-        <div class="menu__item-cost">Цена:</div>
-        <div class="menu__item-total"><span>${this.price}</span> руб/день</div>
-    </div>`;
+    ` <div class="main__pictures">
+    <img class="main__image" src=${this.img} alt=${this.alt} width="100px" height="50px">
+    <img class="main__image-logo" src=${this.logo} alt=${this.logoAlt} width="30px" height="10px">
+  </div>
+  <p class="main__card-number">${this.number}</p>`;
   this.parent.append(newElement);
   }
 }
 
-  const newCard = new MenuCard(
-    "img/tabs/vegy.jpg",
-    "vegy",
-    'Меню "Фитнес"',
-    'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    9,
-    ".menu .container",
-    "menu__item",  // классы, которы идут в rest оператор
-    "big"
+  const cardNumberInput = document.querySelector(".form__number");
+  //const cardNumberInputValue = cardNumberInput.value;
+
+  const newCard = new BankCard(
+    "img/tinkoff.png",
+    "логотип банка",
+    "img/mastercard.jpg",
+    "логотип",
+    1,
+    ".main__cards",
   );
-  newCard.render();
+ 
 
-  
-  let Ivan = () => {newCard.render()}
-  const test = () => {
-    const btn = document.querySelector(".btn__test");
-    btn.addEventListener("click", Ivan)
-  }
-  test()
-
-
-  const newCardSecond = new MenuCard(
-    "img/tabs/elite.jpg",
-    "elite",
-    'Меню “Премиум”',
-    'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-    9,
-    ".menu .container",
-    "menu__item"
-  );
-  newCardSecond.render();
-
-  const newCardThird = new MenuCard(
-    "img/tabs/post.jpg",
-    "post",
-    'Меню "Постное"',
-    'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-    9,
-    ".menu .container",
-    "menu__item"
-  );
-  newCardThird.render();
-
-  
-
-
-  // альтернативный вариант new MenuCard().render()
+  // Валидация
