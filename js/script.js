@@ -8,6 +8,7 @@ const form = document.querySelector(".form__addition");
 const modal = document.querySelector(".modal");
 const modalButton = modal.querySelector(".modal__button");
 const cardNumberInput = document.querySelector(".form__number");
+const cardCvcInput = document.querySelector(".form__cvc")
 
 const formWindowCloseButtonHandler = () => {
   formWindow.classList.add("hidden");
@@ -16,6 +17,8 @@ const formWindowCloseButtonHandler = () => {
 const escPressHandler = (evt) => {
   if (evt.code === `Escape` && formWindow) {
     closeFormWindow();
+    cardNumberInput.value = ``;
+    submitButton.disabled = true;
   }
   if (evt.code === `Escape` && !modal.classList.contains("hidden")) {
     closeModalSuccess();
@@ -37,8 +40,11 @@ const openFormWindow = () => {
   formCancelButton.addEventListener("click", formWindowCloseButtonHandler);
   document.addEventListener("keydown", escPressHandler);
   document.addEventListener("click", windowPressHandler);
-  // cardNumberInput.addEventListener("input", validateCardNumber)
-  // cardNumberInput.addEventListener("keyup", mask);
+  cardNumberInput.addEventListener("keyup", validateCardNumber)
+  cardNumberInput.addEventListener("keydown", validateCardNumber)
+  cardNumberInput.addEventListener("keyup", mask);
+  //cardCvcInput.addEventListener("keyup", validateCvcCardNumber)
+  //cardCvcInput.addEventListener("keydown", validateCvcCardNumber)
   form.addEventListener("submit", submitForm);
 }
 
@@ -47,22 +53,20 @@ const closeFormWindow = () => {
   formCancelButton.removeEventListener("click", formWindowCloseButtonHandler);
   document.removeEventListener("keydown", escPressHandler);
   document.removeEventListener("click", windowPressHandler);
-  // cardNumberInput.removeEventListener("input", validateCardNumber)
-  // cardNumberInput.addEventListener("keyup", mask);
+  cardNumberInput.removeEventListener("keyup", validateCardNumber)
+  cardNumberInput.removeEventListener("keydown", validateCardNumber)
+  cardNumberInput.removeEventListener("keyup", mask);
+  //cardNumberInput.removeEventListener("keydown", validateCardNumber)
+  //cardNumberInput.removedEventListener("keyup", mask);
   form.removeEventListener("submit", submitForm);
 }
 
 const submitForm = (evt) => {
   evt.preventDefault();
-  if (cardNumberInput.value === ``) {
-    cardNumberInput.setCustomValidity(`Заполните, пожалуйста, номер`);
-  } else {
-    cardNumberInput.setCustomValidity(``);
-    openModalSuccess();
-    newCard.renderCard();
-    //cardNumberInput.value = ``;
-  }
-  cardNumberInput.reportValidity();
+  openModalSuccess();
+  newCard.renderCard();
+  cardNumberInput.value = ``;
+  submitButton.disabled = true;
 };
 
 const openModalSuccess = () => {
@@ -123,10 +127,11 @@ const newCard = new BankCard(
     ".main__cards",
   );
 
-// Валидация
+// Test
 
-const validateCardNumber = () => {
+/*const Test = () => {
   const mastercardRegEx = /^([0-9])$/;
+  const maxChars = 16;
   let isValid = false;
 
   if (mastercardRegEx.test(cardNumberInput.value)) {
@@ -136,20 +141,54 @@ const validateCardNumber = () => {
   if(isValid) {
     cardNumberInput.setCustomValidity(``);
   } else {
+    cardNumberInput
     cardNumberInput.setCustomValidity(`пожалуйста, введите 16 цифр карты`);
   }
 
   cardNumberInput.reportValidity();
+
+  if (cardNumberInput.value.length > maxChars) {
+    cardNumberInput.value.substr(0, maxChars)
+  }
+}*/
+
+
+// Валидация
+const REG_EXP = /^([0-9]){1,4}$/;
+const maxChars = 19;
+//const maxCharsCvc = 3;
+
+const validateCardNumber = () => {
+
+  if (cardNumberInput.value.length > maxChars) {
+    cardNumberInput.value = cardNumberInput.value.substr(0, maxChars);
+  }
+
+  if (cardNumberInput.value.length > maxChars) {
+    cardNumberInput.value = cardNumberInput.value.substr(0, maxChars);
+  }
+
+  if (cardNumberInput.value.length === 19) {
+    submitButton.disabled = false;
+  }
 }
 
+/*const validateCvcCardNumber = () => {
+  
+  if (cvcInput.value.length > maxCharsCvc) {
+    cvcInput.value = cardNumberInput.value.substr(3, maxCharsCvc);
+  }
 
-// Ввод инпута
+  if (cvcInput.value.length > maxCharsCvc) {
+    cvcInput.value = cardNumberInput.value.substr(3, maxCharsCvc);
+  }
+}*/
 
-/*const mask = () => {
+// Ввод инпута через пробел
+
+const mask = () => {
   let val = cardNumberInput.value.replace(/[^0-9]/g, '');
   val = val !== '' ? val.match(/.{1,4}/g).join` ` : ` `;
   cardNumberInput.value = val;
-  
-}*/
-
+}
 

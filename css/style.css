@@ -259,6 +259,14 @@ body {
   border: 1px solid black;
 }
 
+.form__button-submit:disabled,
+.form__button-submit:disabled:hover,
+.form__button-submit:disabled:focus {
+  opacity: 0.1;
+  background-color: grey;
+  border: none;
+}
+
 /* Transfer form */
 
 .transfer__header {
@@ -497,3 +505,5 @@ body {
 .hidden {
   display: none;
 }
+
+
