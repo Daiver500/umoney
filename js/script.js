@@ -19,6 +19,7 @@ const escPressHandler = (evt) => {
     closeFormWindow();
     cardNumberInput.value = ``;
     submitButton.disabled = true;
+    cardCvcInput.value = ``;
   }
   if (evt.code === `Escape` && !modal.classList.contains("hidden")) {
     closeModalSuccess();
@@ -67,6 +68,7 @@ const submitForm = (evt) => {
   newCard.renderCard();
   cardNumberInput.value = ``;
   submitButton.disabled = true;
+  cardCvcInput.value = ``;
 };
 
 const openModalSuccess = () => {
